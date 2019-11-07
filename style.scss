@@ -9,6 +9,25 @@ ul, button, rotate: 1.5rem;
 */
 
 
+/* Mixin */
+$tiny-max: 450px;
+$small-max: 750px;
+$medium-max: 1024px;
+
+@mixin respond-to ($media) {
+  @if $media == tiny {
+    @media only screen and (max-width: $tiny-max) { @content;}
+  }
+  @else if $media == small {
+    @media only screen and (min-width: $tiny-max + 1) and (max-width: $small-max) { @content;}
+  }
+  @else if $media == medium {
+    @media only screen and (min-width: $small-max + 1) and (max-width: $medium-max) { @content;}
+  }
+}
+
+
+
 /* global */
 $subYellow: #CCAB77;
 $navShadow: 0px 0px 0px 5px rgba(212,182,138,1);
@@ -41,6 +60,10 @@ nav {
   top: 0;
   position: fixed;
   width: 90%;
+
+  @include respond-to(tiny) {
+    width: 100%;
+  }
 }
 
 a {
@@ -71,6 +94,10 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @include respond-to(tiny) {
+    width: 100%;
+  }
 }
 
 //------------------Main part--------------------
@@ -88,6 +115,14 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+
+    @include respond-to(tiny) {
+      justify-content: space-around;
+    }
+
+    @include respond-to(small) {
+      justify-content: space-around;
+    }
   }
 
   &__li {
@@ -96,6 +131,15 @@ button {
     font-size: 1.2rem;
     color: white;
     letter-spacing: .1rem;
+
+    @include respond-to(tiny) {
+      margin-right: 0rem;
+      letter-spacing: 0rem;
+    }
+
+    @include respond-to(small) {
+      margin-right: 0rem;
+    }
   }
 }
 
@@ -121,6 +165,20 @@ button {
         z-index: 1;
         border: 15px solid $mainBlue;
         margin-top: 130px;
+
+        @include respond-to(tiny) {
+          height: 210px;
+          width: 210px;
+          border: 10px solid $mainBlue;
+          margin-top: 80px;
+        }
+
+        @include respond-to(small) {
+          height: 250px;
+          width: 250px;
+          border: 10px solid $mainBlue;
+          margin-top: 100px;
+        }
       }
     }
 
@@ -136,8 +194,22 @@ button {
   color: $pointFontCol;
   font-size: 2.5rem;
   text-align: center;
-  margin-top: 12%;
+  margin-top: 15%;
   margin-bottom: 1%;
+
+  @include respond-to(tiny) {
+    font-size: 2.2rem;
+    margin-top: 25%;
+  }
+
+  @include respond-to(small) {
+    margin-top: 25%;
+  }
+
+  @include respond-to(medium) {
+    margin-top: 23%;
+  }
+
 }
 
 
@@ -155,6 +227,10 @@ button {
   height: 45px;
   margin-bottom: 45px;
   display: block;
+
+  @include respond-to(tiny) {
+    font-size: 1.8rem;
+  }
 }
 
 .flip3 { animation: flip3 5s cubic-bezier(0.23, 1, 0.32, 1.2) infinite;
@@ -181,17 +257,34 @@ button {
   text-align: center;
   width: 90%;
 
+  @include respond-to(tiny) {
+    width: 100%;
+  }
+
    h1 {
     margin-top: 50px;
     margin-bottom: 50px;
     font-size: 2.5rem;
     color: $pointFontCol;
+
+    @include respond-to(tiny) {
+      font-size: 2.2rem;
+    }
   }
 
   img {
     margin: 0 auto;
     max-width: 280px;
     height: 300px;
+
+    @include respond-to(tiny) {
+      height: 280px;
+    }
+
+    @include respond-to(medium) {
+      max-width: 220px;
+      height: 250px;
+    }
   }
 
   p {
@@ -207,6 +300,21 @@ button {
     max-width: 280px;
     height:350px;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+    @include respond-to(tiny) {
+      width: 280px;
+      height:330px;
+      margin-bottom: 50px;
+    }
+
+    @include respond-to(small) {
+      margin-bottom: 50px;
+    }
+
+    @include respond-to(medium) {
+      width: 220px;
+      height:300px;
+    }
   }
 }
 
@@ -216,6 +324,28 @@ button {
   margin-bottom: 50px;
   width: 50vw;
   justify-content: space-around;
+
+  @include respond-to(tiny) {
+    width: 100vw;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+  }
+
+  @include respond-to(small) {
+    width: 100vw;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+  }
+
+  @include respond-to(medium) {
+    width: 80vw;
+    align-content: center;
+    align-items: center;
+  }
 }
 
 
@@ -227,10 +357,18 @@ button {
   width: 90%;
   background-color: $mainBlue;
 
+  @include respond-to(tiny) {
+    width: 100%;
+  }
+
   &__con {
     font-size: 2rem;
     color: $pointFontCol;
     margin-bottom: 80px;
+
+    @include respond-to(tiny) {
+      font-size: 1.6rem;
+    }
   }
 
   &__info {
@@ -238,6 +376,14 @@ button {
     flex-direction: row;
     justify-content: space-around;
     align-content: center;
+
+    @include respond-to(tiny) {
+      display: block;
+    }
+
+    @include respond-to(small) {
+      display: block;
+    }
 
   }
 
@@ -247,6 +393,26 @@ button {
     width: 100%;
     align-content: center;
     justify-content: center;
+
+    @include respond-to(tiny) {
+      width: 80vw;
+      margin-bottom: 30px;
+      justify-content: space-around;
+    }
+
+    @include respond-to(small) {
+      width: 60vw;
+      margin-bottom: 30px;
+      justify-content: space-around;
+    }
+
+    @include respond-to(medium) {
+      width: 25vw;
+      align-content: space-around;
+      justify-content: space-around;
+    }
+
+
 
     a {
       display: flex;
